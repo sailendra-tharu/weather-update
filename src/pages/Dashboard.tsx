@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input, Switch } from "antd";
+import { Input, Spin, Switch } from "antd";
 import { IoSearchOutline } from "react-icons/io5";
 
 import Card from "../Components/Card/Card";
@@ -15,7 +15,7 @@ interface DashboardProps {
 const Dashboard = ({ initialDarkMode }: DashboardProps) => {
   const [searchCity, setSearchCity] = useState("");
   const city = useDebounce(searchCity, 1000);
-  const { weather } = useWeather({ city });
+  const { weather, loading } = useWeather({ city });
   const [darkMode, setDarkMode] = useState(initialDarkMode);
   const [favoriteWeather, setFavoriteWeather] = useState<any>(null);
 
@@ -93,6 +93,31 @@ const Dashboard = ({ initialDarkMode }: DashboardProps) => {
         <div className="bg-white w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl h-auto text-black p-4 rounded-lg shadow-md">
           <Charts weather={weather} />
         </div>
+      </div>
+
+      {/* Three  days weather data */}
+      <div className="p-5 border border-gray-300 rounded-2xl w-full h-auto flex gap-8 justify-center items-center text-center shadow-md mt-8 flex-wrap">
+        {loading ? (
+          <Spin />
+        ) : weather?.list?.length > 1 ? (
+          weather.list
+            .slice(1, 4)
+            .map((forecast: any, index: any) => (
+              <Card
+                key={index}
+                label={weather?.city?.name ?? "No Data"}
+                temperature={forecast?.main?.temp ?? 0}
+                weatherCondition={forecast?.weather?.[0]?.main}
+                humidity={forecast?.main?.humidity ?? 0}
+                windSpeed={forecast?.wind?.speed ?? 0}
+                showFavoriteButton={false}
+              />
+            ))
+        ) : (
+          <p className="text-blue-900 font-semibold">
+            Three Days Data Will Be Availabe After Searching The City
+          </p>
+        )}
       </div>
     </div>
   );
