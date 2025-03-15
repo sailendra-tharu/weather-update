@@ -54,7 +54,7 @@ const Charts = ({ weather }: WeatherChartsProps) => {
   );
 
   return (
-    <div className="p-5 border border-gray-300 rounded-2xl max-w-4xl w-full h-auto flex flex-col items-center text-center shadow-md">
+    <div className="p-5 border border-gray-300 rounded-2xl w-full h-auto flex flex-col items-center text-center shadow-md">
       <h2 className="text-xl font-bold">Weather in {weather.city.name},</h2>
       <p className="text-lg">
         <strong>Temperature:</strong> {weather.list[0].main.temp.toFixed(2)}°C
