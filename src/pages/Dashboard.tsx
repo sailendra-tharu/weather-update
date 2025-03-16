@@ -96,7 +96,7 @@ const Dashboard = ({ initialDarkMode }: DashboardProps) => {
       </div>
 
       {/* Three  days weather data */}
-      <div className="p-5 border border-gray-300 rounded-2xl w-full h-auto flex gap-8 justify-center items-center text-center shadow-md mt-8 flex-wrap">
+      <div className="p-5 border border-gray-300 bg-white rounded-2xl w-full h-auto flex gap-8 justify-center items-center text-center shadow-md mt-8 flex-wrap">
         {loading ? (
           <Spin />
         ) : weather?.list?.length > 1 ? (
