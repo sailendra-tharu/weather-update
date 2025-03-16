@@ -38,7 +38,7 @@ const Dashboard = ({ initialDarkMode }: DashboardProps) => {
     >
       {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4 w-full px-4">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <img src={weatherIcon} width="80" height="80" alt="Weather Icon" />
           <h1 className="text-xl md:text-2xl font-bold">Weather</h1>
         </div>
